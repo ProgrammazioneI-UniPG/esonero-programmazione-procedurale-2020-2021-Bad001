@@ -11,7 +11,7 @@ int main() {
   // Variabili
   int scelta = 0;
   time_t t;
-  
+  // Inizializzo il seme
   srand((unsigned) time(&t));
   vistaMenu();
   do {
@@ -37,23 +37,16 @@ int main() {
 
 void crittografiaChiaveInserita() {
   char m[128], k[128], c[128];    // La stringa M è il messaggio in chiaro, k la chiave e c è la stringa M cifrata
-  printf("Inserisci la stringa M da cifrare: ");  // Tutti controlli
-  do {
-    scanf("%s", m);
-    if(strlen(m) > 127) {
-      printf("La stringa M supera la dimensione massima\nPer favore reinserisci la stringa M: ");
-    }
-  } while(strlen(m) > 127);
+  while (getchar()!='\n');  // Svuoto il buffer dello standard input
+  printf("Inserisci la stringa M da cifrare: ");
+  fgets(m,128,stdin);
   printf("Inserisci la stringa K per la cifratura: ");
   do {
-    scanf("%s", k);
-    if(strlen(k) > 127) {
-      printf("La chiave supera la dimensione massima\nPer favore reinserisci la chiave K: ");
-    }
+    fgets(k,128,stdin);
     if(strlen(m) > strlen(k)) {
       printf("La chiave K è meno lunga della stringa M\nPer favore reinserisci la chiave K: ");
     }
-  } while(strlen(m) > strlen(k) || strlen(k) > 127);
+  } while(strlen(m) > strlen(k));
   printf("La stringa M cifrata e visualizzata in esadecimale: ");
   for(int i = 0; i < strlen(m); i++) {
     c[i] = m[i] ^ k[i];     // OR esclusivo M + K = C per cifrare
@@ -69,13 +62,9 @@ void crittografiaChiaveInserita() {
 
 void crittografiaChiaveGenerata() {
   char m[128], k[128], c[128];
+  while (getchar()!='\n');
   printf("Inserisci la stringa M da cifrare: ");
-  do {
-    scanf("%s", m);
-    if(strlen(m) > 127) {
-      printf("La stringa M supera la dimensione massima\nPer favore reinserisci la stringa M: ");
-    }
-  } while(strlen(m) > 127);
+  fgets(m,128,stdin);
   printf("La chiave generata e visualizzata in esadecimale: ");
   for(int i = 0; i < strlen(m); i++) {
     k[i] = rand() % 128;
