@@ -67,7 +67,7 @@ void crittografiaChiaveGenerata() {
   fgets(m,128,stdin);
   printf("La chiave generata: ");
   for(int i = 0; i < strlen(m)-1; i++) {
-    k[i] = 33 + rand() % 96;    // Genero valori da 0 a 96 e ci aggiungo 33 per filtrare i caratteri speciali
+    k[i] = 33 + rand() % 93;    // Genero valori da 0 a 93 e ci aggiungo 33 per filtrare i caratteri speciali
     printf("%c", k[i]);
   }
   printf("\nLa stringa M cifrata e visualizzata in esadecimale: ");
