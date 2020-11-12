@@ -48,12 +48,12 @@ void crittografiaChiaveInserita() {
     }
   } while(strlen(m) > strlen(k));
   printf("La stringa M cifrata e visualizzata in esadecimale: ");
-  for(int i = 0; i < strlen(m); i++) {
+  for(int i = 0; i < strlen(m)-1; i++) {    // strlen(m)-1 per via del carattere terminatore
     c[i] = m[i] ^ k[i];     // OR esclusivo M + K = C per cifrare
     printf("%X", c[i]);     // Stampo i valori delle celle di c in esadecimale
   }
   printf("\nLa stringa M decifrata: ");
-  for(int i = 0; i < strlen(m); i++) {
+  for(int i = 0; i < strlen(m)-1; i++) {
     m[i] = c[i] ^ k[i];   // OR esclusivo C + K = M per decifrare
     printf("%c", m[i]);   // Stampo i valori delle celle di C in char
   }
@@ -65,18 +65,18 @@ void crittografiaChiaveGenerata() {
   while (getchar()!='\n');
   printf("Inserisci la stringa M da cifrare: ");
   fgets(m,128,stdin);
-  printf("La chiave generata e visualizzata in esadecimale: ");
-  for(int i = 0; i < strlen(m); i++) {
-    k[i] = rand() % 128;
-    printf("%X", k[i]);
+  printf("La chiave generata: ");
+  for(int i = 0; i < strlen(m)-1; i++) {
+    k[i] = 33 + rand() % 96;    // Genero valori da 0 a 96 e ci aggiungo 33 per filtrare i caratteri speciali
+    printf("%c", k[i]);
   }
   printf("\nLa stringa M cifrata e visualizzata in esadecimale: ");
-  for(int i = 0; i < strlen(m); i++) {
+  for(int i = 0; i < strlen(m)-1; i++) {
     c[i] = m[i] ^ k[i];
     printf("%X", c[i]);
   }
   printf("\nLa stringa M decifrata: ");
-  for(int i = 0; i < strlen(m); i++) {
+  for(int i = 0; i < strlen(m)-1; i++) {
     m[i] = c[i] ^ k[i];
     printf("%c", m[i]);
   }
